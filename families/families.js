@@ -9,9 +9,11 @@ logoutButton.addEventListener('click', () => {
   logout();
 });
 
-async function fetchAndDisplayFamilies (families) {
+async function fetchAndDisplayFamilies () {
   // fetch families from supabase
+  const families = await getFamilies();
   familiesEl.textContent = '';
+
 
   // clear out the familiesEl
 

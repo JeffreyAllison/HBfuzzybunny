@@ -37,21 +37,17 @@ window.addEventListener('load', async () => {
 
   // for each family
   for (let family of families) {
+    // create an option tag
     const optionTag = document.createElement('option');
+    // set the option's value and text content
     optionTag.textContent = family.name;
     optionTag.value = family.id;
-
+    // and append the option to the select
     familySelectorEl.append(optionTag);
 
   }
 
-  // create an option tag
-
-  // set the option's value and text content
-
-  // and append the option to the select
 });
-
 
 checkAuth();
 
