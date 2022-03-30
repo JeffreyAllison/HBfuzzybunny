@@ -15,8 +15,14 @@ form.addEventListener('submit', async (e) => {
   // get the name and family id from the form
   const data = new FormData(form);
 
+  const name = data.get('bunny-name');
+  const familyId = data.get('family-id');
+
   // use createBunny to create a bunny with this name and family id
-  await createBunny(data.get('name'), data.get('family_id'));
+  await createBunny({
+    name: name,
+    family_id: familyId
+  });
 
   form.reset();
 });
@@ -24,10 +30,20 @@ form.addEventListener('submit', async (e) => {
 window.addEventListener('load', async () => {
   // let's dynamically fill in the families dropdown from supabase
   // grab the select HTML element from the DOM
+  const familySelectorEl = document.querySelector('select');
 
   // go get the families from supabase
+  const families = await getFamilies();
 
   // for each family
+  for (let family of families) {
+    const optionTag = document.createElement('option');
+    optionTag.textContent = family.name;
+    optionTag.value = family.id;
+
+    familySelectorEl.append(optionTag);
+
+  }
 
   // create an option tag
 

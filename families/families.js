@@ -9,7 +9,7 @@ logoutButton.addEventListener('click', () => {
   logout();
 });
 
-function displayFamilies (families) {
+async function fetchAndDisplayFamilies (families) {
   // fetch families from supabase
   familiesEl.textContent = '';
 
@@ -36,7 +36,7 @@ function displayFamilies (families) {
 
         const updatedFamilies = await getFamilies();
 
-        displayFamilies(updatedFamilies);
+        fetchAndDisplayFamilies(updatedFamilies);
 
       });
       bunniesEl.append(bunnyEl);
@@ -50,5 +50,5 @@ function displayFamilies (families) {
 window.addEventListener('load', async () => {
   const families = await getFamilies();
 
-  displayFamilies(families);
+  fetchAndDisplayFamilies(families);
 });
